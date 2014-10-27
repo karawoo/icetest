@@ -1,0 +1,9 @@
+Package: icetest
+Title: Test data for under-ice ecology synthesis
+Version: 0.1
+Authors@R: "Kara Woo <woo.kara@gmail.com> [aut, cre]"
+Description: QA/QC for data submitted to the under-ice ecology synthesis 
+    project.
+Depends: R (>= 3.1.1)
+License: MIT + file LICENSE
+LazyData: true
