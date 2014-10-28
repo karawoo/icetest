@@ -12,6 +12,8 @@ check_missing <- function(dat) {
   cols <- c("year", "season", "researcher", "lakename")
   result <- lapply(dat[, cols], function(x) any(is.na(x)))
   missing <- names(result)[which(sapply(result, isTRUE))]
-  result <- list(missing_data_in_fields = missing)
-  result
+  if (length(missing) > 0) {
+    result <- list(missing_data_in_fields = missing)
+    result
+  }
 }

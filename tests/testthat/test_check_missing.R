@@ -13,6 +13,6 @@ check_missing_dat_2 <- data.frame(year = c(1990, 1990),
                                   watertemp = c(NA, 12.5))
 
 test_that("check_missing identifies missing data from proper columns", {
-  expect_equal(length(check_missing(check_missing_dat_1)[[1]]), 0)
+  expect_true(is.null(check_missing(check_missing_dat_1)[[1]]))
   expect_true(length(check_missing(check_missing_dat_2)[[1]]) > 0)
 })
