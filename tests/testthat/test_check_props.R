@@ -39,10 +39,10 @@ dat_props_correct <- data.frame("year"            = rep(2000, 2),
                                 stringsAsFactors  = FALSE)
 
 
-test_that("Rows with proportions that don't sum to 1 are returned" {
-  expect_that(length(check_props(dat_props)) == 2)
+test_that("Rows with proportions that don't sum to 1 are returned", {
+  expect_true(length(check_props(dat_props)) == 2)
 })
 
-test_that("When all rows sum to 1, nothing is returned" {
+test_that("When all rows sum to 1, nothing is returned", {
   expect_null(check_props(dat_props_correct))
 })
