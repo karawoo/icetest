@@ -3,4 +3,5 @@
 export(check_fields)
 export(check_missing)
 export(check_props)
+export(check_values)
 export(field_match)

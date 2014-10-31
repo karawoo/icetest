@@ -83,12 +83,35 @@ check_props(dat)
 # 4 2003 iceoff   Lake A   56.09323   -56.39756     100.00
 ```
 
+### Check predefined values
+
+Certain fields have a set number of options (e.g. `season` can be `iceon` or 
+`iceoff` and nothing else). The `check_values()` function will make sure that
+values in the following fields are legal: `season` ("iceon" or "iceoff"), 
+`multiplestations` ("yes" or "no"), `startmonth` and `endmonth` (three letter
+abbreviation), `sampletype` ("in situ" or "remote sensed"), `fadata` ("no", 
+"proportional", or "concentrations"), `gutdata` ("yes" or "no"), `bensubstrate`,
+(NA or "organic", "silt", "sand", "rock", "mixed"). If any of these fields 
+have illegal values, `check_values()` returns a list of them. Example:
+
+```r
+check_values(dat)
+# $endmonth
+# [1] "Sept"
+# 
+# $sampletype
+# [1] "other"
+# 
+# $fadata
+# [1] "kiwi" NA    
+# 
+# $gutdata
+# [1] "NA"
+```
+
 ### On the to-do list:
 
 * Function to convert horizontal data to vertical.
-* Check values: certain fields have a set number of options (e.g. `season` can
-be `iceon` or `iceoff` and nothing else). Add a function to test that only
-allowed values are in these fields.
 * Check dates: start date should be before end date; month fields should be
 three-letter abbreviations; ice duration shouldn't be shorter than aggregation
 period in winter.
