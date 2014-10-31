@@ -28,7 +28,7 @@ check_values <- function(dat) {
                                   "mixed"))
   
   if (!all(names(values) %in% colnames(dat))) {
-    missing <- names(values)[which(!names(values) %in% colnames(alldata))]
+    missing <- names(values)[which(!names(values) %in% colnames(dat))]
     stop(paste("Data is missing the following columns:", 
                paste(missing, collapse = ", ")))
   }

@@ -23,3 +23,7 @@ test_that("Function returns a list of invalid values", {
   expect_true(is.list(check_values(dat_values)))
   expect_false(is.list(check_values(dat_values[1:2, ])))
 })
+
+test_that("Function returns error when columns are missing", {
+  expect_that(check_values(dat_values[, -c(8:9)]), throws_error())
+})
