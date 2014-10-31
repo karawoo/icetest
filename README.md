@@ -117,6 +117,9 @@ three-letter abbreviations; ice duration shouldn't be shorter than aggregation
 period in winter.
 * Check averages vs. maxima: when we ask for an average and a max value for a
 given measurement, averages should never be greater than maxima.
+* Check field types (numeric vs. character)
+* Check for repeated observations (a single station should only have one row
+of data per season)
 * ...
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
