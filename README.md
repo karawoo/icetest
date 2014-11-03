@@ -142,14 +142,23 @@ check_iceduration_iceoff(dat)
 # 1 2004 iceoff   Lake D          80
 ```
 
+### Check for repeated observations
+
+There should be only one observation at a given station in a given season.
+`check_repeats()` returns a data frame of any duplicated observations.
+
+```r
+check_repeats(dat)
+#   year season lakename stationlat stationlong
+# 4 1975 iceoff   Lake F   48.11363   -138.7702
+```
+
 ### On the to-do list:
 
 * Function to convert horizontal data to vertical.
 * Check averages vs. maxima: when we ask for an average and a max value for a
 given measurement, averages should never be greater than maxima.
 * Check field types (numeric vs. character)
-* Check for repeated observations (a single station should only have one row
-of data per season)
 * ...
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
