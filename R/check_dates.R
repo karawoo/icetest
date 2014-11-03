@@ -37,4 +37,65 @@ check_dates <- function(dat) {
 }
 
 
+#' Check ice duration
+#' 
+#' Make sure ice duration is not shorter than aggregation period in winter.
+#' 
+#' @param dat Data frame to be tested.
+#' 
+#' @importFrom magrittr %>%
+#' @importFrom dplyr filter mutate select
+#' 
+#' @author Kara Woo
+#' 
+#' @export  
+
+check_iceduration_length <- function(dat) {
+  test <- dat %>%
+    filter(season == "iceon") %>%
+    mutate(aggperiod = as.Date(paste(endyear, endmonth, endday, sep = "-"), 
+                          format = "%Y-%b-%d") -
+             as.Date(paste(startyear, startmonth, startday, sep = "-"), 
+                     format = "%Y-%b-%d"), 
+           test = aggperiod <= iceduration) %>%
+    filter(test == FALSE)
+  if (nrow(test) > 0) {
+    result <- test %>% select(year, season, lakename, stationlat, stationlong,
+                              startday, startmonth, startyear, 
+                              endday, endmonth, endyear, iceduration, aggperiod)
+    result
+  }
+}
+
+
+#' Check ice duration column during iceoff period
+#' 
+#' Ice duration should be zero during iceoff.
+#' 
+#' @param dat Data frame to be tested.
+#' 
+#' @importFrom magrittr %>%
+#' @importFrom dplyr filter select
+#' 
+#' @author Kara Woo
+#' 
+#' @export
+
+check_iceduration_iceoff <- function(dat) {
+  test <- dat %>%
+    filter(season == "iceoff" & iceduration != 0) %>%
+    select(c(year, season, lakename, iceduration))
+  if (nrow(test) > 0) {
+    result <- test %>% select(year, season, lakename, iceduration)
+    result
+  }
+}
+
+
+
+
+
+
+
+
 

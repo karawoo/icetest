@@ -2,6 +2,8 @@
 
 export(check_dates)
 export(check_fields)
+export(check_iceduration_iceoff)
+export(check_iceduration_length)
 export(check_missing)
 export(check_props)
 export(check_values)
