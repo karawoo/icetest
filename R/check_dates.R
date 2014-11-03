@@ -13,7 +13,8 @@
 
 check_dates <- function(dat) {
   datecols <- c("startday", "startmonth", "startyear", "endday", "endmonth", 
-                "endyear", "iceduration")
+                "endyear", "iceduration", "year", "season", "stationlat" ,
+                "stationlong", "lakename")
   if (!all(datecols %in% names(dat))) {
     missing <- datecols[which(!datecols %in% colnames(dat))]
     stop(paste("Data is missing the following columns:", 
