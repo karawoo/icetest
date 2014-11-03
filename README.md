@@ -85,36 +85,66 @@ check_props(dat)
 
 ### Check predefined values
 
-Certain fields have a set number of options (e.g. `season` can be `iceon` or 
+Certain fields have a set number of options (e.g. `season` can be `iceon` or
 `iceoff` and nothing else). The `check_values()` function will make sure that
-values in the following fields are legal: `season` ("iceon" or "iceoff"), 
+values in the following fields are legal: `season` ("iceon" or "iceoff"),
 `multiplestations` ("yes" or "no"), `startmonth` and `endmonth` (three letter
-abbreviation), `sampletype` ("in situ" or "remote sensed"), `fadata` ("no", 
+abbreviation), `sampletype` ("in situ" or "remote sensed"), `fadata` ("no",
 "proportional", or "concentrations"), `gutdata` ("yes" or "no"), `bensubstrate`,
-(NA or "organic", "silt", "sand", "rock", "mixed"). If any of these fields 
+(NA or "organic", "silt", "sand", "rock", "mixed"). If any of these fields
 have illegal values, `check_values()` returns a list of them. Example:
 
 ```r
 check_values(dat)
 # $endmonth
 # [1] "Sept"
-# 
+#
 # $sampletype
 # [1] "other"
-# 
+#
 # $fadata
-# [1] "kiwi" NA    
-# 
+# [1] "kiwi" NA
+#
 # $gutdata
 # [1] "NA"
+```
+
+### Check dates
+
+#### Start date should be before end date.
+`check_dates()` will return a data frame of any rows where end date is before
+start date.
+
+```r
+check_dates(dat)
+# year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear
+# 1 2003  iceon   Lake D   56.09553   -56.39156       20        Feb      2003      3      Jan    2003
+# 2 2003 iceoff   Lake D   56.09553   -56.39156       19        Sep      2003      8      Aug    2003
+```
+
+#### Ice duration shouldn't be shorter than aggregation period in iceon season.
+`check_iceduration_length()` returns a data frame of any rows where ice
+duration is shorter than aggregation period.
+
+```r
+check_iceduration_length(dat)
+# year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear iceduration aggperiod
+# 1 2004  iceon   Lake D   56.09553   -56.39156        2        Jan      2004     25      Mar    2004          80   83 days
+```
+
+#### Ice duration should be zero in iceoff season
+`check_iceduration_iceoff()` returns a data frame of any rows where ice
+duration is not zero during the iceoff season.
+
+```r
+check_iceduration_iceoff(dat)
+#   year season lakename iceduration
+# 1 2004 iceoff   Lake D          80
 ```
 
 ### On the to-do list:
 
 * Function to convert horizontal data to vertical.
-* Check dates: start date should be before end date; month fields should be
-three-letter abbreviations; ice duration shouldn't be shorter than aggregation
-period in winter.
 * Check averages vs. maxima: when we ask for an average and a max value for a
 given measurement, averages should never be greater than maxima.
 * Check field types (numeric vs. character)
