@@ -117,7 +117,7 @@ start date.
 
 ```r
 check_dates(dat)
-# year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear
+#   year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear
 # 1 2003  iceon   Lake D   56.09553   -56.39156       20        Feb      2003      3      Jan    2003
 # 2 2003 iceoff   Lake D   56.09553   -56.39156       19        Sep      2003      8      Aug    2003
 ```
@@ -128,7 +128,7 @@ duration is shorter than aggregation period.
 
 ```r
 check_iceduration_length(dat)
-# year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear iceduration aggperiod
+#   year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear iceduration aggperiod
 # 1 2004  iceon   Lake D   56.09553   -56.39156        2        Jan      2004     25      Mar    2004          80   83 days
 ```
 
