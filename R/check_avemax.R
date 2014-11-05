@@ -22,8 +22,24 @@ check_avemax <- function(dat) {
     result <- tmplist[lapply(tmplist, nrow) > 0]
     names(result) <- gsub("max", "", 
                           names(indices[lapply(indices, length) > 0]))
-    result
+  }
+  
+  if (any(!mapply(`>=`, dat[, "lakemaxdepth"], 
+                  dat[, "lakemeandepth"]), na.rm = TRUE)) {
+    depth <- list(lakedepth = dat[which(dat$lakemeandepth > dat$lakemaxdepth), 
+                 c("year", "season", "lakename", "stationlat", "stationlong", 
+                   "lakemeandepth", "lakemaxdepth")])
+  }
+  
+  if (exists("result") & exists("depth")) {
+    final <- append(result, depth)
+    final
+  } else if (exists("result")) {
+    final <- result
+    final
+  } else if (exists("depth")) {
+    final <- depth
+    final
   }
 }
-
 
