@@ -153,11 +153,31 @@ check_repeats(dat)
 # 4 1975 iceoff   Lake F   48.11363   -138.7702
 ```
 
+### Check averages and maxima
+
+Many fields have an "average" and "maximum" column. Averages should never be
+larger than maxima. `check_avemax()` returns a list of any fields where the
+average is greater than the maximum. Example:
+
+```r
+check_avemax(dat)
+# $totphos
+#   year season lakename stationlat stationlong maxtotphos avetotphos
+# 4 1981 iceoff   Lake G   53.51569   -137.4344        2.5         10
+
+# $zoopmass
+#   year season lakename stationlat stationlong maxzoopmass avezoopmass
+# 1 1980  iceon   Lake G   53.51569   -137.4344         999        1000
+# 5 1982  iceon   Lake G   53.51569   -137.4344         900         999
+
+# $lakedepth
+#   year season lakename stationlat stationlong lakemeandepth lakemaxdepth
+# 6 1982 iceoff   Lake G   53.51569   -137.4344           500          250
+```
+
 ### On the to-do list:
 
 * Function to convert horizontal data to vertical.
-* Check averages vs. maxima: when we ask for an average and a max value for a
-given measurement, averages should never be greater than maxima.
 * Check field types (numeric vs. character)
 * ...
 
