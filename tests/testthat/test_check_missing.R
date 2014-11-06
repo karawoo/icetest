@@ -15,6 +15,10 @@ dat_missing <- data.frame(year = c(1990, 1990),
                           endyear = c(1990, 1990), 
                           stringsAsFactors = FALSE)
 
+dat_missing_strings <- replace(dat_missing, is.na(dat_missing), "NA")
+
+dat_missing_both <- data.frame(dat_missing[, 1:7], dat_missing_strings[, 8:13])
+
 dat_missing_correct <- data.frame(year = c(1990, 1990), 
                                   season = c("iceon", "iceoff"), 
                                   researcher = c("Jane.Doe", "Jane.Doe"), 
@@ -33,6 +37,8 @@ dat_missing_correct <- data.frame(year = c(1990, 1990),
 test_that("check_missing identifies missing data from proper columns", {
   expect_true(is.null(check_missing(dat_missing_correct)[[1]]))
   expect_true(length(check_missing(dat_missing)[[1]]) > 0)
+  expect_equal(check_missing(dat_missing), check_missing(dat_missing_strings))
+  expect_equal(check_missing(dat_missing), check_missing(dat_missing_both))
 })
 
 test_that("Function fails when data is missing columns", {

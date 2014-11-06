@@ -18,7 +18,9 @@ check_missing <- function(dat) {
   if (!all(cols %in% colnames(dat))) {
     stop("Data is missing some required columns")
   }
-  result <- lapply(dat[, cols], function(x) any(is.na(x)))
+  trueNAs <- lapply(dat[, cols], function(x) any(is.na(x)))
+  strings <- lapply(dat[, cols], function(x) any(x == "NA"))
+  result <- append(trueNAs, strings)
   missing <- names(result)[which(sapply(result, isTRUE))]
   if (length(missing) > 0) {
     result <- list(missing_data_in_fields = missing)
