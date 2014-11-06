@@ -17,7 +17,8 @@ dat_avemax <- data.frame(year = c(1980, 1980, 1981, 1981, 1982, 1982),
 
 test_that("check_avemax returns data frame of rows with mixed up ave/max", {
   expect_true(length(check_avemax(dat_avemax)) > 0)
-  expect_null(check_avemax(dat_avemax[, c("year", "season", "lakename", 
-                                          "stationlat", "stationlong",
-                                          "avesuva", "maxsuva")]))
+  expect_null(check_avemax(dat_avemax[1:4, c("year", "season", "lakename", 
+                                             "stationlat", "stationlong",
+                                             "lakemaxdepth", "lakemeandepth",
+                                             "avesuva", "maxsuva")]))
 })
