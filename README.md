@@ -23,6 +23,21 @@ devtools::install_github('icetest', 'karawoo')
 library('icetest')
 ```
 
+### Convert data from horizontal to vertical
+
+The data template is organized horizontally with extra columns describing each
+field. This is useful for researchers who are first viewing the template, but
+ultimately we will want data to be organized vertically (and all the other
+functions in this package require that). The `t_icedata()` function takes data
+that has been pasted into the template (horizontal) and converts it to
+vertical. However, all columns will be character columns so many will need to be
+converted after transposing.
+
+```r
+dat_horiz <- read.csv("data_horizontal.csv", stringsAsFactors = FALSE)
+dat <- t_icedata(dat_horiz)
+```
+
 ### Check that column names match the fields in the data template
 
 ```r
@@ -177,7 +192,6 @@ check_avemax(dat)
 
 ### On the to-do list:
 
-* Function to convert horizontal data to vertical.
 * Check field types (numeric vs. character)
 * ...
 
