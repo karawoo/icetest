@@ -62,6 +62,32 @@ check_fields(dat)
 # [1] "year"       "season"     "researcher" "lakename"   "lakeregloc"
 ```
 
+### Check numeric fields
+
+`check_num()` checks columns that should be numeric and returns the names of any
+that aren't, e.g.:
+
+```r
+check_num(dat)
+# [1] "lakeelevation" "watershedarea" "lakefetch"     "stationlat"
+# [5] "stationlong"   "iceduration"   "photicdepth"   "avephytocount"
+# [9] "maxphytocount"
+```
+
+`fix_num()` attempts to convert columns to numeric but will issue warnings if
+there are any that it can't convert.
+
+```r
+dat_converted <- fix_num(dat)
+Warning messages:
+1: In FUN(X[[85L]], ...) : NAs introduced by coercion
+2: In FUN(X[[85L]], ...) : NAs introduced by coercion
+3: In FUN(X[[85L]], ...) : NAs introduced by coercion
+4: In FUN(X[[85L]], ...) : NAs introduced by coercion
+5: In FUN(X[[85L]], ...) : NAs introduced by coercion
+6: In FUN(X[[85L]], ...) : NAs introduced by coercion
+```
+
 ### Check for missing data
 
 Certain fields such as `year`, `season`, `researcher`, and `lakename`,
@@ -191,10 +217,5 @@ check_avemax(dat)
 # 6 1982 iceoff   Lake G   53.51569   -137.4344           500          250
 ```
 
-### On the to-do list:
-
-* Check field types (numeric vs. character)
-* ...
-
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
-if you have any suggestions or notice any bugs.
+if you have suggestions or notice any bugs.
