@@ -1,6 +1,7 @@
 # icetest
 
 [![Build Status](https://api.travis-ci.org/karawoo/icetest.png)](https://travis-ci.org/karawoo/icetest)
+[![Build status](https://ci.appveyor.com/api/projects/status/vce9mxrisirn94rt?svg=true)](https://ci.appveyor.com/project/karawoo/icetest)
 
 This is an R package to do some QA/QC on data submitted to the
 [under-ice ecology synthesis project](https://www.nceas.ucsb.edu/underice).
