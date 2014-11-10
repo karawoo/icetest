@@ -10,7 +10,8 @@ check_num(dat)
 \item{dat}{Data frame to be tested.}
 }
 \description{
-Certain fields should be numeric; check that they are.
+Certain fields should be numeric; check that they are. Returns a vector of
+column names of fields that should be numeric but aren't.
 }
 \author{
 Kara Woo
