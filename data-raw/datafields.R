@@ -1,4 +1,4 @@
-template <- read.csv("./data-raw/IceDataTemplate-Beta2_draft2_24Oct2014.csv", 
+template <- read.csv("./data-raw/IceEcologyDataTemplate_17Nov2014.csv", 
                      stringsAsFactors = FALSE)
 
 # all field names
@@ -26,7 +26,7 @@ numfields <- c("year", "lakearea", "lakemeandepth", "lakemaxdepth",
                "maxbactcount", "avebactprod", "maxbactprod", "avebenalgalmass",
                "maxbenalgalmass", "avebenchla", "maxbenchla", "benamphdens",
                "bengastrodens", "benbivalvedens", "beninsectdens",
-               "benoligodens")
+               "benoligodens", grep("cv", datafields, value = TRUE))
 
 # saves data to R/sysdata.rda
 use_data(datafields, numfields, internal = TRUE, overwrite = TRUE)
