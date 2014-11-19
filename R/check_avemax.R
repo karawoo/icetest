@@ -10,8 +10,9 @@
 
 check_avemax <- function(dat) {
   avemax <- grep("^(ave|max)", names(dat), value = TRUE)
-  aves <- grep("^ave", avemax, value = TRUE)
   maxs <- grep("^max", avemax, value = TRUE)
+  aves <- grep("^ave", avemax, value = TRUE)
+  aves <- aves[which(substr(aves, 4, 1000) %in% substr(maxs, 4, 1000))]
   if (any(!mapply(`>=`, dat[, maxs], dat[, aves]), na.rm = TRUE)) {
     ll <- as.list(as.data.frame(mapply(`>=`, dat[, maxs], dat[, aves])))
     indices <- lapply(ll, function(x) which(!x))
