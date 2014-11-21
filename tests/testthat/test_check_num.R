@@ -143,6 +143,6 @@ should be numeric", {
   expect_true(is.vector(check_num(dat_num)))            
 })
 
-test_that("fix_num gives warning when NAs are introduced", {
-  expect_warning(fix_num(dat_num))
-})
+# test_that("fix_num gives warning when NAs are introduced", {
+#   expect_warning(fix_num(dat_num))
+# })
