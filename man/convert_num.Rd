@@ -10,6 +10,8 @@ convert_num(x, y, coerce = FALSE)
 \item{x}{Column to be converted}
 
 \item{y}{Data frame}
+
+\item{coerce}{Should NAs be introduced if conversion to numeric fails?}
 }
 \description{
 Convert character fields to numeric, and if conversion fails give an

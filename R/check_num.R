@@ -27,6 +27,7 @@ check_num <- function(dat) {
 #'
 #' @param x Column to be converted
 #' @param y Data frame
+#' @param coerce Should NAs be introduced if conversion to numeric fails?
 #'
 #' @author Kara Woo
 
