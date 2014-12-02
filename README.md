@@ -75,17 +75,30 @@ check_num(dat)
 ```
 
 `fix_num()` attempts to convert columns to numeric but will issue warnings if
-there are any that it can't convert.
+there are any that it can't convert. If `coerce == FALSE` (the default), the
+function will not leave columns as character if they can't be converted to
+numeric automatically. If `coerce == TRUE`, `NA`s will be introduced in any
+columns that can't be automatically converted. In both cases warnings will alert
+the user to any problem columns.
 
 ```r
-dat_converted <- fix_num(dat)
+dat_converted <- fix_num(dat, coerce = FALSE)
 Warning messages:
-1: In FUN(X[[85L]], ...) : NAs introduced by coercion
-2: In FUN(X[[85L]], ...) : NAs introduced by coercion
-3: In FUN(X[[85L]], ...) : NAs introduced by coercion
-4: In FUN(X[[85L]], ...) : NAs introduced by coercion
-5: In FUN(X[[85L]], ...) : NAs introduced by coercion
-6: In FUN(X[[85L]], ...) : NAs introduced by coercion
+1: In value[[3L]](cond) : Conversion failed in column: watershedarea
+2: In value[[3L]](cond) : Conversion failed in column: lakefetch
+3: In value[[3L]](cond) : Conversion failed in column: stationlat
+4: In value[[3L]](cond) : Conversion failed in column: stationlong
+5: In value[[3L]](cond) : Conversion failed in column: iceduration
+6: In value[[3L]](cond) : Conversion failed in column: photicdepth
+
+dat_converted <- fix_num(dat, coerce = TRUE)
+Warning messages:
+1: In value[[3L]](cond) : NAs introduced in column: watershedarea
+2: In value[[3L]](cond) : NAs introduced in column: lakefetch
+3: In value[[3L]](cond) : NAs introduced in column: stationlat
+4: In value[[3L]](cond) : NAs introduced in column: stationlong
+5: In value[[3L]](cond) : NAs introduced in column: iceduration
+6: In value[[3L]](cond) : NAs introduced in column: photicdepth
 ```
 
 ### Check for missing data
