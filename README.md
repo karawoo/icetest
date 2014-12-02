@@ -83,22 +83,22 @@ the user to any problem columns.
 
 ```r
 dat_converted <- fix_num(dat, coerce = FALSE)
-Warning messages:
-1: In value[[3L]](cond) : Conversion failed in column: watershedarea
-2: In value[[3L]](cond) : Conversion failed in column: lakefetch
-3: In value[[3L]](cond) : Conversion failed in column: stationlat
-4: In value[[3L]](cond) : Conversion failed in column: stationlong
-5: In value[[3L]](cond) : Conversion failed in column: iceduration
-6: In value[[3L]](cond) : Conversion failed in column: photicdepth
+# Warning messages:
+# 1: In value[[3L]](cond) : Conversion failed in column: watershedarea
+# 2: In value[[3L]](cond) : Conversion failed in column: lakefetch
+# 3: In value[[3L]](cond) : Conversion failed in column: stationlat
+# 4: In value[[3L]](cond) : Conversion failed in column: stationlong
+# 5: In value[[3L]](cond) : Conversion failed in column: iceduration
+# 6: In value[[3L]](cond) : Conversion failed in column: photicdepth
 
 dat_converted <- fix_num(dat, coerce = TRUE)
-Warning messages:
-1: In value[[3L]](cond) : NAs introduced in column: watershedarea
-2: In value[[3L]](cond) : NAs introduced in column: lakefetch
-3: In value[[3L]](cond) : NAs introduced in column: stationlat
-4: In value[[3L]](cond) : NAs introduced in column: stationlong
-5: In value[[3L]](cond) : NAs introduced in column: iceduration
-6: In value[[3L]](cond) : NAs introduced in column: photicdepth
+# Warning messages:
+# 1: In value[[3L]](cond) : NAs introduced in column: watershedarea
+# 2: In value[[3L]](cond) : NAs introduced in column: lakefetch
+# 3: In value[[3L]](cond) : NAs introduced in column: stationlat
+# 4: In value[[3L]](cond) : NAs introduced in column: stationlong
+# 5: In value[[3L]](cond) : NAs introduced in column: iceduration
+# 6: In value[[3L]](cond) : NAs introduced in column: photicdepth
 ```
 
 ### Check for missing data
