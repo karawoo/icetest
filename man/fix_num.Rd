@@ -4,10 +4,15 @@
 \alias{fix_num}
 \title{Fix non-numeric fields}
 \usage{
-fix_num(dat)
+fix_num(dat, coerce = FALSE)
 }
 \arguments{
 \item{dat}{Data frame to be tested.}
+
+\item{coerce}{Should NAs be introduced if conversion to numeric fails?
+Defaults to FALSE; character fields that cannot be converted will remain
+as is. If coerce == TRUE, NAs will be introduced in columns that cannot
+be automatically converted.}
 }
 \description{
 Convert fields from character to numeric.

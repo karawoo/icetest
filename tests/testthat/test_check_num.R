@@ -143,6 +143,7 @@ should be numeric", {
   expect_true(is.vector(check_num(dat_num)))            
 })
 
-# test_that("fix_num gives warning when NAs are introduced", {
-#   expect_warning(fix_num(dat_num))
-# })
+test_that("fix_num gives warning when fields can't be converted", {
+  expect_warning(fix_num(dat_num, coerce = FALSE))
+  expect_warning(fix_num(dat_num, coerce = TRUE))
+})
