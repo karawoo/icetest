@@ -2,6 +2,7 @@
 
 export(check_avemax)
 export(check_dates)
+export(check_depths)
 export(check_fields)
 export(check_iceduration_iceoff)
 export(check_iceduration_length)
