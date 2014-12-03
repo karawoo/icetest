@@ -9,19 +9,21 @@
 
 prop_sums <- function(x, cols) {
   y <- subset(x[, cols], !apply(x[, cols], 1, function(x) all(is.na(x))))
-  sums <- rowSums(y, na.rm = TRUE)
-  not_one <- sums[sapply(sums, function(x) {
-    !isTRUE(all.equal(x, 1, check.attributes = FALSE, check.names = FALSE, 
-                      tolerance = 0.00001)) 
-  })]
-  if (length(not_one) > 0) {
-    result <- cbind(x[names(not_one), 
-            c("year", "season", "lakename", "stationlat", "stationlong")], 
-          proportion = not_one)
-  } else {
-    result <- NULL
+  if (nrow(y) > 0) {
+    sums <- rowSums(y, na.rm = TRUE)
+    not_one <- sums[sapply(sums, function(x) {
+      !isTRUE(all.equal(x, 1, check.attributes = FALSE, check.names = FALSE, 
+                        tolerance = 0.00001)) 
+    })]
+    if (length(not_one) > 0) {
+      result <- cbind(x[names(not_one), 
+              c("year", "season", "lakename", "stationlat", "stationlong")], 
+            proportion = not_one)
+    } else {
+      result <- NULL
+    }
+    result
   }
-  result
 }
 
 
