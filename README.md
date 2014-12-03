@@ -230,5 +230,20 @@ check_avemax(dat)
 # 6 1982 iceoff   Lake G   53.51569   -137.4344           500          250
 ```
 
+### Check sample depth and photic depth
+
+Sample depth should be equal to or shallower than photic depth. `check_depths()`
+returns a data frame of observations where sample depth is deeper than photic
+depth. In some cases this may be acceptable if the difference is small; this
+will have to be decided on a case-by-case basis.
+
+```r
+check_depths(dat)
+#   year season stationlat stationlong lakename photicdepth sampledepth
+# 3 2001  iceon   48.40392   -125.6284   Lake H          46          50
+# 4 2001 iceoff   48.40392   -125.6284   Lake H          39          40
+```
+
+
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
 if you have suggestions or notice any bugs.
