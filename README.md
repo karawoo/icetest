@@ -167,6 +167,7 @@ check_values(dat)
 ### Check dates
 
 #### Start date should be before end date.
+
 `check_dates()` will return a data frame of any rows where end date is before
 start date.
 
@@ -178,6 +179,7 @@ check_dates(dat)
 ```
 
 #### Ice duration shouldn't be shorter than aggregation period in iceon season.
+
 `check_iceduration_length()` returns a data frame of any rows where ice
 duration is shorter than aggregation period.
 
@@ -188,6 +190,7 @@ check_iceduration_length(dat)
 ```
 
 #### Ice duration should be zero in iceoff season
+
 `check_iceduration_iceoff()` returns a data frame of any rows where ice
 duration is not zero during the iceoff season.
 
@@ -195,6 +198,25 @@ duration is not zero during the iceoff season.
 check_iceduration_iceoff(dat)
 #   year season lakename iceduration
 # 1 2004 iceoff   Lake D          80
+```
+
+#### Check `periodn`
+
+`periodn` should be the number of sampling *days*, not the total number of
+samples (e.g. if a lake was sampled in one season on two different days at three
+depths on each day, `periodn` should be 2, *not* 6). Unfortunately this is not
+very clear in the data template (it's a little clearer in the instructions
+document). `check_periodn()` returns a data frame of observations where
+`periodn` is greater than the number of days in the aggregation period, which is
+an imperfect method of identifying cases where researchers used the individual
+number of samples at different depths.
+
+```r
+check_periodn(dat)
+#   year season lakename stationlat stationlong      start        end agg_period periodn
+# 1 2002 iceoff   Lake D   56.09553   -56.39156 2002-08-16 2002-08-16     1 days       3
+# 2 2004  iceon   Lake D   56.09553   -56.39156 2004-01-02 2004-03-25    84 days     350
+
 ```
 
 ### Check for repeated observations
@@ -229,21 +251,6 @@ check_avemax(dat)
 #   year season lakename stationlat stationlong lakemeandepth lakemaxdepth
 # 6 1982 iceoff   Lake G   53.51569   -137.4344           500          250
 ```
-
-### Check sample depth and photic depth
-
-Sample depth should be equal to or shallower than photic depth. `check_depths()`
-returns a data frame of observations where sample depth is deeper than photic
-depth. In some cases this may be acceptable if the difference is small; this
-will have to be decided on a case-by-case basis.
-
-```r
-check_depths(dat)
-#   year season stationlat stationlong lakename photicdepth sampledepth
-# 3 2001  iceon   48.40392   -125.6284   Lake H          46          50
-# 4 2001 iceoff   48.40392   -125.6284   Lake H          39          40
-```
-
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
 if you have suggestions or notice any bugs.

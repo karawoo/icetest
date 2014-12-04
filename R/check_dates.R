@@ -92,9 +92,32 @@ check_iceduration_iceoff <- function(dat) {
 }
 
 
+#' Check periodn
+#'
+#' Should not be smaller than the number of days in the aggregation period
+#' (this is confusing in the instructions).
+#'
+#' @param dat Data frame to be tested.
+#'
+#' @importFrom magrittr %>%
+#' @importFrom dplyr select mutate filter
+#'
+#' @author Kara Woo
+#'
+#' @export
 
-
-
+check_periodn <- function(dat) {
+  result <- dat %>%
+    mutate(start = as.Date(paste(startday, startmonth, startyear, sep = "-"), "%d-%b-%Y"),
+           end = as.Date(paste(endday, endmonth, endyear, sep = "-"), "%d-%b-%Y"),
+           agg_period = end - start + 1) %>%
+    filter(periodn > agg_period) %>%
+    select(year, season, lakename, stationlat, stationlong, start, end,
+           agg_period, periodn)
+  if (nrow(result) > 0) {
+    result
+  }
+}
 
 
 
