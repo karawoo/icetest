@@ -2,14 +2,18 @@
 ####  Sample script for checking under-ice ecology data  ##
 ###########################################################
 
-library("devtools")
-install_github("karawoo/icetest")
+if (!"icetest" %in% installed.packages()) {
+  if (!"devtools" %in% installed.packages()) {
+    install.packages("devtools")
+  }
+  library("devtools")
+  install_github("karawoo/icetest")
+}
+
 library("icetest")
 
-datafile <- "path/to/file.csv"
-
 ### Load data in template format
-data_horiz <- read.csv(datafile, stringsAsFactors = FALSE)
+#data_horiz <- read.csv("/path/to/file.csv", stringsAsFactors = FALSE)
 
 ### Convert to vertical format
 vdata <- t_icedata(data_horiz)
