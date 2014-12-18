@@ -15,6 +15,9 @@ check_avemax <- function(dat, flag) {
   ## keep only averages which have a corresponding max
   aves <- aves[which(substr(aves, 4, 1000) %in% substr(maxs, 4, 1000))]
 
+  ## initialize results
+  result <- NULL
+  
   ## check if ave is ever greater than max and/or if one of them is ever missing
   ## when the other is not
   if (flag == "values") {
@@ -30,7 +33,7 @@ check_avemax <- function(dat, flag) {
         dat[indices[[x]], c("year", "season", "lakename", "stationlat", 
                             "stationlong", x, gsub("max", "ave", x))]
       })
-      ## remove empty data frames
+      ## remove empty data frames and create list of results
       result <- tmplist[lapply(tmplist, nrow) > 0]
       names(result) <- gsub("max", "", 
                             names(indices[lapply(indices, length) > 0]))
@@ -38,21 +41,12 @@ check_avemax <- function(dat, flag) {
     ## also check lake mean/max depth
     if (any(!mapply(`>=`, dat[, "lakemaxdepth"], 
                     dat[, "lakemeandepth"]), na.rm = TRUE)) {
-      depth <- list(lakedepth = dat[which(dat$lakemeandepth > dat$lakemaxdepth), 
+      result <- append(result, list(lakedepth = dat[which(dat$lakemeandepth >
+                                                            dat$lakemaxdepth), 
                         c("year", "season", "lakename", "stationlat", "stationlong", 
-                          "lakemeandepth", "lakemaxdepth")])
+                          "lakemeandepth", "lakemaxdepth")]))
     }
-    
-    if (exists("result") & exists("depth")) {
-      final <- append(result, depth)
-      final
-    } else if (exists("result")) {
-      final <- result
-      final
-    } else if (exists("depth")) {
-      final <- depth
-      final
-    }
+    result
     ## Check for missing values if either average or maximum is present:
   } else if (flag == "missing") {
     if(any(!mapply(function(a, b) mapply(compNA, a, b), dat[, maxs], dat[, aves]))) {
@@ -66,10 +60,10 @@ check_avemax <- function(dat, flag) {
       result <- tmplist[lapply(tmplist, nrow) > 0]
       names(result) <- gsub("max", "",
                             names(indices[lapply(indices, length) > 0]))
+    } else {
+      result <- NULL
     }
-    if (exists("result")) {
-      result
-    }
+    result
   }
 }
 
