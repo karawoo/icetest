@@ -23,3 +23,8 @@ test_that("check_avemax returns data frame of rows with mixed up ave/max", {
                                              "avesuva", "maxsuva")],
                            flag = "values"))
 })
+
+test_that("check_avemax identifies missing max/average", {
+  expect_true(length(check_avemax(dat_avemax, flag = "missing")) > 0 )
+  expect_null(check_avemax(dat_avemax[1:4, ], flag = "missing"))
+})
