@@ -46,8 +46,10 @@ check_periodn(vdata_nums)
 ### Check for any repeat values (station/year combos)
 check_repeats(vdata_nums)
 
-### Average should never be greater than max
-check_avemax(vdata_nums)
+### Average should never be greater than max and both (or neither) average and
+### maximum should be reported
+check_avemax(vdata_nums, flag = "values")
+check_avemax(vdata_nums, flag = "missing")
 
 ### Is sample depth ever greater than photic depth?
 check_depths(vdata_nums)
