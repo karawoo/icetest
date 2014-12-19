@@ -233,11 +233,11 @@ check_repeats(dat)
 ### Check averages and maxima
 
 Many fields have an "average" and "maximum" column. Averages should never be
-larger than maxima. `check_avemax()` returns a list of any fields where the
-average is greater than the maximum. Example:
+larger than maxima. `check_avemax()` with `flag = "values"` returns a list of
+any fields where the average is greater than the maximum. Example:
 
 ```r
-check_avemax(dat)
+check_avemax(dat, flag = "values")
 # $totphos
 #   year season lakename stationlat stationlong maxtotphos avetotphos
 # 4 1981 iceoff   Lake G   53.51569   -137.4344        2.5         10
@@ -250,6 +250,23 @@ check_avemax(dat)
 # $lakedepth
 #   year season lakename stationlat stationlong lakemeandepth lakemaxdepth
 # 6 1982 iceoff   Lake G   53.51569   -137.4344           500          250
+```
+
+If an average is repoted, a maximum should also be reported (and vice versa). In
+some cases (if values are calculated based on a single sample) these numbers
+will be the same; this is okay. `check_avemax()` with `flag = "missing"`
+identifies any cases where either average or maximum, but not both, are
+reported.
+
+```r
+check_avemax(dat, flag = "missing")
+# $totphos
+#   year season lakename stationlat stationlong maxtotphos avetotphos
+# 7 1983  iceon   Lake G   53.51569   -137.4344         NA       0.25
+
+# $zoopmass
+#   year season lakename stationlat stationlong maxzoopmass avezoopmass
+# 8 1983 iceoff   Lake G   53.51569   -137.4344         900          NA
 ```
 
 ### Check sample depth and photic depth
