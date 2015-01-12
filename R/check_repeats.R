@@ -13,7 +13,7 @@ check_repeats <- function(dat) {
   repeatcols <- c("year", "season", "lakename", "stationlat", "stationlong")
   dd <- dat[, repeatcols]
   if (any(duplicated(dd))) {
-    dd[duplicated(dd), ]
+    dd[duplicated(dd) | duplicated(dd, fromLast = TRUE), ]
   }
 }
 
