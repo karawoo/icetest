@@ -16,7 +16,7 @@ library("icetest")
 #data_horiz <- read.csv("/path/to/file.csv", stringsAsFactors = FALSE)
 
 ### Convert to vertical format
-vdata <- t_icedata(data_horiz)
+#vdata <- t_icedata(data_horiz)
 
 ### Do field names match those in the template? 
 field_match(vdata)
