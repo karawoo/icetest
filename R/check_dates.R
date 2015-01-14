@@ -83,7 +83,8 @@ check_iceduration_length <- function(dat) {
 
 check_iceduration_iceoff <- function(dat) {
   test <- dat %>%
-    filter(season == "iceoff" & iceduration != 0) %>%
+    filter(season == "iceoff" & iceduration != 0
+           | season == "iceoff" & is.na(iceduration)) %>%
     select(c(year, season, lakename, iceduration))
   if (nrow(test) > 0) {
     result <- test %>% select(year, season, lakename, iceduration)
