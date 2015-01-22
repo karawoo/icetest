@@ -4,7 +4,7 @@
 \alias{check_avemax}
 \title{Check averages and maxima}
 \usage{
-check_avemax(dat)
+check_avemax(dat, flag)
 }
 \arguments{
 \item{dat}{Data frame to be tested.}

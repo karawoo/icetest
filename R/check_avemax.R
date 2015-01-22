@@ -69,7 +69,8 @@ check_avemax <- function(dat, flag) {
 
 #' Compare ave and max for NAs
 #'
-#' Returns TRUE if both or neither argument is NA; returns FALSE if one is NA but the other is not.
+#' Returns TRUE if both or neither argument is NA; returns FALSE if one is NA
+#' but the other is not.
 #'
 #' @param a first argument
 #' @param b second argument
@@ -87,3 +88,4 @@ compNA <- function(a, b) {
     FALSE
   }
 }
+
