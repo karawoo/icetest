@@ -37,7 +37,13 @@ check_props(vdata_nums)
 ### Check fields that have predefined values
 check_values(vdata_nums)
 
-### Check dates
+### Check dates:
+### - start date should be before end date
+### - ice duration shouldn't be longer than aggregation period in iceon season
+### - ice duration should be NA or 0 in iceoff season (template says NA but 0 also
+### makes sense)
+### - periodn should not be smaller than number of days in the aggregation
+### period
 check_dates(vdata_nums)
 check_iceduration_length(vdata_nums)
 check_iceduration_iceoff(vdata_nums)
@@ -46,8 +52,8 @@ check_periodn(vdata_nums)
 ### Check for any repeat values (station/year combos)
 check_repeats(vdata_nums)
 
-### Average should never be greater than max and both (or neither) average and
-### maximum should be reported
+### Average should never be greater than max, and both (or neither) average and
+### maximum should be reported. NULL indicates all is ok.
 check_avemax(vdata_nums, flag = "values")
 check_avemax(vdata_nums, flag = "missing")
 
