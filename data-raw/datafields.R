@@ -1,10 +1,8 @@
 template <- read.csv("./data-raw/IceEcologyDataTemplate_17Nov2014.csv", 
                      stringsAsFactors = FALSE)
 
-# all field names
 datafields <- template$fieldname
 
-# fields that should be numeric
 numfields <- c("year", "lakearea", "lakemeandepth", "lakemaxdepth", 
                "lakeelevation", "watershedarea", "h2oresidence", "lakefetch", 
                "stationdistance", "stationdepth", "stationlat", "stationlong", 
@@ -29,4 +27,4 @@ numfields <- c("year", "lakearea", "lakemeandepth", "lakemaxdepth",
                "benoligodens", grep("cv", datafields, value = TRUE))
 
 # saves data to R/sysdata.rda
-use_data(datafields, numfields, internal = TRUE, overwrite = TRUE)
+use_data(datafields, numfields, internal = FALSE, overwrite = TRUE)
