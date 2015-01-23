@@ -3,6 +3,8 @@
 #' Checks that averages are not larger than maxima.
 #'
 #' @param dat Data frame to be tested.
+#' @param flag Do you want to check if ave is greater than max ("flag") or if
+#' there are missing values when either ave or max is present ("missing")
 #' 
 #' @author Kara Woo
 #' 
