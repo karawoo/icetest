@@ -14,8 +14,8 @@
 #' @export
 
 check_depths <- function(dat) {
-  cols <- c("year", "season", "stationlat", "stationlong", "lakename",
-            "photicdepth", "sampledepth")
+  cols <- c("year", "season", "stationname", "stationlat", "stationlong",
+            "lakename", "photicdepth", "sampledepth")
   tmp <- dat[which(!is.na(dat$photicdepth) & !is.na(dat$sampledepth)), cols]
   result <- tmp[with(tmp, photicdepth < sampledepth), ]
   if (nrow(result) > 0) {

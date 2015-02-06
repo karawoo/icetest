@@ -13,7 +13,7 @@ prop_sums(x, cols)
 }
 \description{
 Sum proportions and, if any do not sum to 1, return a data frame of some
-identifiable columns of the data (year, season, lakename, lat/long) and the
-proportion sum.
+identifiable columns of the data (year, season, lakename, station name,
+lat/long) and the proportion sum.
 }
 

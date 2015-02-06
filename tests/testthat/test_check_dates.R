@@ -3,6 +3,7 @@ context("Check dates")
 dat_dates <- data.frame(year        = c(2002, 2002, 2003, 2003, 2004, 2004),
                         season      = rep(c("iceon", "iceoff"), 3),
                         lakename    = rep("Lake D", 6),
+                        stationname = rep("Station A", 6),
                         stationlat  = rep(56.095533, 6), 
                         stationlong = rep(-56.391561, 6),
                         startday    = c(31, 16, 20, 19, 02, 28),
