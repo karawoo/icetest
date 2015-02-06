@@ -10,7 +10,7 @@ check_iceduration_iceoff(dat)
 \item{dat}{Data frame to be tested.}
 }
 \description{
-Ice duration should be zero during iceoff.
+Ice duration should be NA during iceoff (zero is also ok).
 }
 \author{
 Kara Woo
