@@ -2,6 +2,7 @@ context("Check sample depth and photic depth")
 
 dat_depths <- data.frame(year = c(2000, 2000, 2001, 2001),
                          season = rep(c("iceon", "iceoff"), 2),
+                         stationname = rep("5830", 4),
                          stationlat = rep(48.403918, 4),
                          stationlong = rep(-125.628362, 4),
                          lakename = rep("Lake H", 4),
