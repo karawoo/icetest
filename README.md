@@ -12,9 +12,8 @@ development, so beware that the behavior of functions may change.
 Functions assume that data is structured vertically with `fieldname` as column
 headers, and without the other columns present in the template (`dataclass`,
 etc.). This means the data is organized differently from the layout of the data
-template, but is the easiest way to work with the data for testing. A function
-to transform data from the template format to the format used in these
-functions is on the to-do list.
+template, but is the easiest way to work with the data for testing. Use the
+`t_icedata()` function to transform data from the template format to vertical.
 
 ### To install:
 
