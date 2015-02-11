@@ -14,7 +14,7 @@
 #' @export
 
 t_icedata <- function(dat) {
-  dd <- dat[, grep("fieldname|X", names(dat), value = TRUE)]
+  dd <- dat[, grep("fieldname|X|Col", names(dat), value = TRUE)]
   vert <- as.data.frame(t.data.frame(dd[, -1]), stringsAsFactors = FALSE)
   colnames(vert) <- dd[, 1]
   vert
