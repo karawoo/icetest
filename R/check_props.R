@@ -13,7 +13,7 @@ prop_sums <- function(x, cols) {
     sums <- rowSums(y, na.rm = TRUE)
     not_one <- sums[sapply(sums, function(x) {
       !isTRUE(all.equal(x, 1, check.attributes = FALSE, check.names = FALSE, 
-                        tolerance = 0.00001)) 
+                        tolerance = 0.001)) 
     })]
     if (length(not_one) > 0) {
       result <- cbind(x[names(not_one), 
