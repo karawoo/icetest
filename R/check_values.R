@@ -21,7 +21,7 @@ check_values <- function(dat) {
                  multiplestations = c("yes", "no"),
                  startmonth = month.abb, 
                  endmonth = month.abb, 
-                 sampletype = c("in situ", "remote sensed"), 
+                 sampletype = c("in situ", "remote sensed", "intake"), 
                  fadata = c("no", "proportional", "concentrations"), 
                  gutdata = c("yes", "no"), 
                  bensubstrate = c(NA, "NA", "organic", "silt", "sand", "rock", 
