@@ -5,7 +5,7 @@
 #' - season ("iceon" or "iceoff")
 #' - multiplestations ("yes" or "no")
 #' - startmonth and endmonth (three letter abbreviation)
-#' - sampletype ("in situ" or "remote sensed")
+#' - sampletype ("in situ", "remote sensed", or "intake")
 #' - fadata ("no", "proportional", or "concentrations")
 #' - gutdata ("yes" or "no")
 #' - bensubstrate (NA or "organic", "silt", "sand", "rock", "mixed")
