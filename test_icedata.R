@@ -59,3 +59,7 @@ check_avemax(vdata_nums, flag = "missing")
 
 ### Is sample depth ever greater than photic depth?
 check_depths(vdata_nums)
+
+### Is there phytoplankton biomass data? If so, follow up with researcher to
+### convert units to biovolume
+check_phytomass(vdata_nums)

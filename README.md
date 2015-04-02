@@ -304,6 +304,20 @@ check_depths(dat)
 # 4          40
 ```
 
+### Check for phytoplankton biomass data
+
+We originally asked for phytoplankton biomass in units of ug dry weight / liter,
+however after talking with researchers we determined that biovolume is a better
+unit. The `check_phytomass()` function throws a warning if biomass data is
+present for phytoplankton, ciliates, or heterotrophic nanoflagellates so that we
+can follow up with the researcher about converting the units.
+
+```r
+check_phytomass(dat)
+Warning message:
+In check_phytomass(dat) :
+  Phyto/ciliate/HNF biomass present. Follow up with researcher about converting to biovolume
+```
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
 if you have suggestions or notice any bugs.
