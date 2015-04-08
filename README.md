@@ -308,7 +308,7 @@ check_depths(dat)
 
 We originally asked for phytoplankton biomass in units of ug dry weight / liter,
 however after talking with researchers we determined that biovolume is a better
-unit. The `check_phytomass()` function throws a warning if biomass data is
+measurement. The `check_phytomass()` function throws a warning if biomass data is
 present for phytoplankton, ciliates, or heterotrophic nanoflagellates so that we
 can follow up with the researcher about converting the units.
 
