@@ -319,5 +319,40 @@ In check_phytomass(dat) :
   Phyto/ciliate/HNF biomass present. Follow up with researcher about converting to biovolume
 ```
 
+### Check nutrient values
+
+#### DOC
+
+We originally asked for DOC data in units of μg/l, however mg/l was provided by
+most researchers and is a more standard unit. If DOC is in the hundreds or
+thousands, it is likely in μg/l and we should follow up with researchers and
+likely convert their data. `check_doc()` Throws a warning if DOC values are >=
+200.
+
+```r
+check_doc(dat)
+Warning message:
+In check_doc(dat) :
+  DOC data values exceed 200. These data are likely reported in units of ug/l. Check with researchers before converting to mg/l.
+```
+
+#### Nitrogen
+
+Some researchers have reported data in mg/l instead of μg/l. This function
+throws a warning if values are <= 15 and we should follow up in those
+cases. This also returns a data frame of any observations where dissolved
+nitrogen is greater than total nitrogen.
+
+```r
+check_nitro(dat_nitro)
+  year season      lakename stationname stationlat stationlong avetotnitro
+1 2000  iceon Lake Nitrogen          4B      57.34      -137.7         450
+  maxtotnitro avetotdissnitro maxtotdissnitro
+1         500            1000            1001
+Warning message:
+In check_nitro(dat_nitro) :
+  Nitrogen data values exist that are under 15. These data may have been reported in units of mg/l. Check with researchers before converting to ug/l.
+```
+
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
 if you have suggestions or notice any bugs.
