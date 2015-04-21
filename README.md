@@ -345,10 +345,10 @@ nitrogen is greater than total nitrogen.
 
 ```r
 check_nitro(dat_nitro)
-  year season      lakename stationname stationlat stationlong avetotnitro
-1 2000  iceon Lake Nitrogen          4B      57.34      -137.7         450
-  maxtotnitro avetotdissnitro maxtotdissnitro
-1         500            1000            1001
+##   year season      lakename stationname stationlat stationlong avetotnitro
+## 1 2000  iceon Lake Nitrogen          4B      57.34      -137.7         450
+##   maxtotnitro avetotdissnitro maxtotdissnitro
+## 1         500            1000            1001
 Warning message:
 In check_nitro(dat_nitro) :
   Nitrogen data values exist that are under 15. These data may have been reported in units of mg/l. Check with researchers before converting to ug/l.
