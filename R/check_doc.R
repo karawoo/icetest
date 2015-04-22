@@ -6,6 +6,8 @@
 ##' and likely convert their data.
 ##' 
 ##' @param dat Data frame to be tested.
+##'
+##' @encoding utf8
 ##' 
 ##' @author Kara Wo
 ##'

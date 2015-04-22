@@ -10,6 +10,8 @@
 ##'
 ##' @importFrom magrittr %>%
 ##' @importFrom dplyr filter select
+##'
+##' @encoding utf8
 ##' 
 ##' @author Kara Woo
 ##'
