@@ -16,7 +16,7 @@
 ##' @export
 
 check_nitro <- function(dat) {
-  if(any(apply(dat[, grep("^(ave|max)(.+)nitro", names(df), value = TRUE)],
+  if(any(apply(dat[, grep("^(ave|max)(.+)nitro", names(dat), value = TRUE)],
                2,
                FUN = function(x) {
                  any(x <= 15)
