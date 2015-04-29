@@ -63,3 +63,7 @@ check_depths(vdata_nums)
 ### Is there phytoplankton biomass data? If so, follow up with researcher to
 ### convert units to biovolume
 check_phytomass(vdata_nums)
+
+### Check values in nitrogen and DOC data
+check_nitro(vdata_nums)
+check_doc(vdata_nums)
