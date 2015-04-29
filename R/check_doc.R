@@ -1,14 +1,12 @@
 ##' Check DOC values
 ##'
-##' We originally asked for DOC data in units of μg/l, however mg/l was provided
+##' We originally asked for DOC data in units of ug/l, however mg/l was provided
 ##' by most researchers and is a more standard unit. If DOC is in the hundreds
-##' or thousands, it is likely in μg/l and we should follow up with researchers
+##' or thousands, it is likely in ug/l and we should follow up with researchers
 ##' and likely convert their data.
 ##' 
 ##' @param dat Data frame to be tested.
 ##'
-##' @encoding utf8
-##' 
 ##' @author Kara Wo
 ##'
 ##' @export

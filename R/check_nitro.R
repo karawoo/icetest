@@ -1,7 +1,7 @@
 ##' Check nitrogen data
 ##'
 ##' Check order of magnitude of total nitrogen and total dissolved
-##' nitrogen. This data should be in units of μg/l; if values are <=15 check
+##' nitrogen. This data should be in units of ug/l; if values are <=15 check
 ##' that they aren't in mg/l, and if so convert. Also checks if dissolved
 ##' nitrogen values are larger than total nitrogen and returns a data frame of
 ##' any such values.
@@ -11,8 +11,6 @@
 ##' @importFrom magrittr %>%
 ##' @importFrom dplyr filter select
 ##'
-##' @encoding utf8
-##' 
 ##' @author Kara Woo
 ##'
 ##' @export
