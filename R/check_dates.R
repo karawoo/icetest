@@ -13,8 +13,8 @@
 
 check_dates <- function(dat) {
   datecols <- c("startday", "startmonth", "startyear", "endday", "endmonth", 
-                "endyear", "iceduration", "year", "season", "stationlat" ,
-                "stationlong", "lakename")
+                "endyear", "iceduration", "year", "season", "stationname",
+                "stationlat" , "stationlong", "lakename")
   if (!all(datecols %in% names(dat))) {
     missing <- datecols[which(!datecols %in% colnames(dat))]
     stop(paste("Data is missing the following columns:", 
@@ -28,7 +28,8 @@ check_dates <- function(dat) {
            test = end >= start) %>%
     filter(test == FALSE)
   if (nrow(test) > 0) {
-    result <- test %>% select(year, season, lakename, stationlat, stationlong,
+    result <- test %>% select(year, season, lakename, stationname,
+                              stationlat, stationlong,
                               startday, startmonth, startyear, 
                               endday, endmonth, endyear)
     result
@@ -60,7 +61,8 @@ check_iceduration_length <- function(dat) {
            test = aggperiod <= iceduration) %>%
     filter(test == FALSE)
   if (nrow(test) > 0) {
-    result <- test %>% select(year, season, lakename, stationlat, stationlong,
+    result <- test %>% select(year, season, lakename, stationname,
+                              stationlat, stationlong,
                               startday, startmonth, startyear, 
                               endday, endmonth, endyear, iceduration, aggperiod)
     result
@@ -70,7 +72,7 @@ check_iceduration_length <- function(dat) {
 
 #' Check ice duration column during iceoff period
 #' 
-#' Ice duration should be zero during iceoff.
+#' Ice duration should be NA during iceoff (zero is also ok).
 #' 
 #' @param dat Data frame to be tested.
 #' 
@@ -83,10 +85,10 @@ check_iceduration_length <- function(dat) {
 
 check_iceduration_iceoff <- function(dat) {
   test <- dat %>%
-    filter(season == "iceoff" & iceduration != 0) %>%
-    select(c(year, season, lakename, iceduration))
+    filter(season == "iceoff" & !is.na(iceduration) & iceduration != 0) %>%
+    select(c(year, season, lakename, stationname, iceduration))
   if (nrow(test) > 0) {
-    result <- test %>% select(year, season, lakename, iceduration)
+    result <- test %>% select(year, season, lakename, stationname, iceduration)
     result
   }
 }
@@ -112,8 +114,8 @@ check_periodn <- function(dat) {
            end = as.Date(paste(endday, endmonth, endyear, sep = "-"), "%d-%b-%Y"),
            agg_period = end - start + 1) %>%
     filter(periodn > agg_period) %>%
-    select(year, season, lakename, stationlat, stationlong, start, end,
-           agg_period, periodn)
+    select(year, season, lakename, stationname, stationlat, stationlong, start,
+           end, agg_period, periodn)
   if (nrow(result) > 0) {
     result
   }

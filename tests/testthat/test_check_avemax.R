@@ -2,7 +2,8 @@ context("Check averages and maxima")
 
 dat_avemax <- data.frame(year = c(1980, 1980, 1981, 1981, 1982, 1982, 1983, 1983),
                          season = rep(c("iceon", "iceoff"), 4), 
-                         lakename = rep("Lake G", 8), 
+                         lakename = rep("Lake G", 8),
+                         stationname = rep("Hat Rack Bay", 8),
                          stationlat = rep(53.515694, 8),
                          stationlong = rep(-137.434421, 8),
                          lakemaxdepth = c(rep(500, 7), 250),
@@ -17,10 +18,11 @@ dat_avemax <- data.frame(year = c(1980, 1980, 1981, 1981, 1982, 1982, 1983, 1983
 
 test_that("check_avemax returns data frame of rows with mixed up ave/max", {
   expect_true(length(check_avemax(dat_avemax, flag = "values")) > 0)
-  expect_null(check_avemax(dat_avemax[1:4, c("year", "season", "lakename", 
-                                             "stationlat", "stationlong",
-                                             "lakemaxdepth", "lakemeandepth",
-                                             "avesuva", "maxsuva")],
+  expect_null(check_avemax(dat_avemax[1:4, c("year", "season", "lakename",
+                                             "stationname", "stationlat",
+                                             "stationlong", "lakemaxdepth",
+                                             "lakemeandepth", "avesuva",
+                                             "maxsuva")],
                            flag = "values"))
 })
 

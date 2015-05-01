@@ -3,6 +3,8 @@
 #' Checks that averages are not larger than maxima.
 #'
 #' @param dat Data frame to be tested.
+#' @param flag Do you want to check if ave is greater than max ("flag") or if
+#' there are missing values when either ave or max is present ("missing")
 #' 
 #' @author Kara Woo
 #' 
@@ -30,8 +32,9 @@ check_avemax <- function(dat, flag) {
       indices <- lapply(ll, function(x) which(!x))
       ## list of data frames of these observations
       tmplist <- lapply(names(indices), function(x) {
-        dat[indices[[x]], c("year", "season", "lakename", "stationlat", 
-                            "stationlong", x, gsub("max", "ave", x))]
+        dat[indices[[x]],
+            c("year", "season", "lakename", "stationname", "stationlat",
+              "stationlong", x, gsub("max", "ave", x))]
       })
       ## remove empty data frames and create list of results
       result <- tmplist[lapply(tmplist, nrow) > 0]
@@ -43,8 +46,10 @@ check_avemax <- function(dat, flag) {
                     dat[, "lakemeandepth"]), na.rm = TRUE)) {
       result <- append(result, list(lakedepth = dat[which(dat$lakemeandepth >
                                                             dat$lakemaxdepth), 
-                        c("year", "season", "lakename", "stationlat", "stationlong", 
-                          "lakemeandepth", "lakemaxdepth")]))
+                                        c("year", "season", "lakename",
+                                          "stationname", "stationlat",
+                                          "stationlong", "lakemeandepth",
+                                          "lakemaxdepth")]))
     }
     result
     ## Check for missing values if either average or maximum is present:
@@ -54,8 +59,9 @@ check_avemax <- function(dat, flag) {
                    SIMPLIFY = FALSE)
       indices <- lapply(ll, function(x) which(!x))
       tmplist <- lapply(names(indices), function(x) {
-        dat[indices[[x]], c("year", "season", "lakename", "stationlat", 
-                            "stationlong", x, gsub("max", "ave", x))]
+        dat[indices[[x]], c("year", "season", "lakename", "stationname",
+                            "stationlat", "stationlong", x,
+                            gsub("max", "ave", x))]
       })
       result <- tmplist[lapply(tmplist, nrow) > 0]
       names(result) <- gsub("max", "",
@@ -69,7 +75,8 @@ check_avemax <- function(dat, flag) {
 
 #' Compare ave and max for NAs
 #'
-#' Returns TRUE if both or neither argument is NA; returns FALSE if one is NA but the other is not.
+#' Returns TRUE if both or neither argument is NA; returns FALSE if one is NA
+#' but the other is not.
 #'
 #' @param a first argument
 #' @param b second argument
@@ -87,3 +94,4 @@ compNA <- function(a, b) {
     FALSE
   }
 }
+

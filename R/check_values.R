@@ -5,7 +5,7 @@
 #' - season ("iceon" or "iceoff")
 #' - multiplestations ("yes" or "no")
 #' - startmonth and endmonth (three letter abbreviation)
-#' - sampletype ("in situ" or "remote sensed")
+#' - sampletype ("in situ", "remote sensed", or "intake")
 #' - fadata ("no", "proportional", or "concentrations")
 #' - gutdata ("yes" or "no")
 #' - bensubstrate (NA or "organic", "silt", "sand", "rock", "mixed")
@@ -21,7 +21,7 @@ check_values <- function(dat) {
                  multiplestations = c("yes", "no"),
                  startmonth = month.abb, 
                  endmonth = month.abb, 
-                 sampletype = c("in situ", "remote sensed"), 
+                 sampletype = c("in situ", "remote sensed", "intake"), 
                  fadata = c("no", "proportional", "concentrations"), 
                  gutdata = c("yes", "no"), 
                  bensubstrate = c(NA, "NA", "organic", "silt", "sand", "rock", 

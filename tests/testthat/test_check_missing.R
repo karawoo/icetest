@@ -12,12 +12,14 @@ dat_missing <- data.frame(year = c(1990, 1990),
                           startyear = c(1990, 1990), 
                           endday = c(30, 15),
                           endmonth = c('Mar', 'Sep'), 
-                          endyear = c(1990, 1990), 
+                          endyear = c(1990, 1990),
+                          photicdepth = c(NA, NA),
+                          sampledepth = c(NA, 2),
                           stringsAsFactors = FALSE)
 
 dat_missing_strings <- replace(dat_missing, is.na(dat_missing), "NA")
 
-dat_missing_both <- data.frame(dat_missing[, 1:7], dat_missing_strings[, 8:13])
+dat_missing_both <- data.frame(dat_missing[, 1:7], dat_missing_strings[, 8:15])
 
 dat_missing_correct <- data.frame(year = c(1990, 1990), 
                                   season = c("iceon", "iceoff"), 
@@ -31,7 +33,9 @@ dat_missing_correct <- data.frame(year = c(1990, 1990),
                                   startyear = c(1990, 1990), 
                                   endday = c(30, 15),
                                   endmonth = c('Mar', 'Sep'), 
-                                  endyear = c(1990, 1990), 
+                                  endyear = c(1990, 1990),
+                                  photicdepth = c(3.4, 5.7),
+                                  sampledepth = c(3, 5),
                                   stringsAsFactors = FALSE)
 
 test_that("check_missing identifies missing data from proper columns", {

@@ -12,9 +12,8 @@ development, so beware that the behavior of functions may change.
 Functions assume that data is structured vertically with `fieldname` as column
 headers, and without the other columns present in the template (`dataclass`,
 etc.). This means the data is organized differently from the layout of the data
-template, but is the easiest way to work with the data for testing. A function
-to transform data from the template format to the format used in these
-functions is on the to-do list.
+template, but is the easiest way to work with the data for testing. Use the
+`t_icedata()` function to transform data from the template format to vertical.
 
 ### To install:
 
@@ -128,14 +127,14 @@ this function looks like this:
 ```r
 check_props(dat)
 # $phyto
-#   year season lakename stationlat stationlong proportion
-# 4 2003 iceoff   Lake A   56.09323   -56.39756     100.00
-# 5 2004 iceoff   Lake A   56.09323   -56.39756       1.01
-#
+#   year season lakename stationname stationlat stationlong proportion
+# 4 2003 iceoff   Lake A      Az78.1   56.09323   -56.39756     100.00
+# 5 2004 iceoff   Lake A      Az78.1   56.09323   -56.39756       1.01
+
 # $zoo
-#   year season lakename stationlat stationlong proportion
-# 2 2001 iceoff   Lake A   56.09323   -56.39756       0.98
-# 4 2003 iceoff   Lake A   56.09323   -56.39756     100.00
+#   year season lakename stationname stationlat stationlong proportion
+# 2 2001 iceoff   Lake A      Az78.1   56.09323   -56.39756       0.98
+# 4 2003 iceoff   Lake A      Az78.1   56.09323   -56.39756     100.00
 ```
 
 ### Check predefined values
@@ -173,9 +172,12 @@ start date.
 
 ```r
 check_dates(dat)
-#   year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear
-# 1 2003  iceon   Lake D   56.09553   -56.39156       20        Feb      2003      3      Jan    2003
-# 2 2003 iceoff   Lake D   56.09553   -56.39156       19        Sep      2003      8      Aug    2003
+#   year season lakename stationname stationlat stationlong startday startmonth
+# 1 2003  iceon   Lake D   Station A   56.09553   -56.39156       20        Feb
+# 2 2003 iceoff   Lake D   Station A   56.09553   -56.39156       19        Sep
+#   startyear endday endmonth endyear
+# 1      2003      3      Jan    2003
+# 2      2003      8      Aug    2003
 ```
 
 #### Ice duration shouldn't be shorter than aggregation period in iceon season.
@@ -185,8 +187,10 @@ duration is shorter than aggregation period.
 
 ```r
 check_iceduration_length(dat)
-#   year season lakename stationlat stationlong startday startmonth startyear endday endmonth endyear iceduration aggperiod
-# 1 2004  iceon   Lake D   56.09553   -56.39156        2        Jan      2004     25      Mar    2004          80   83 days
+#   year season lakename stationname stationlat stationlong startday startmonth
+# 1 2004  iceon   Lake D   Station A   56.09553   -56.39156        2        Jan
+#   startyear endday endmonth endyear iceduration aggperiod
+# 1      2004     25      Mar    2004          80   83 days
 ```
 
 #### Ice duration should be zero in iceoff season
@@ -196,8 +200,8 @@ duration is not zero during the iceoff season.
 
 ```r
 check_iceduration_iceoff(dat)
-#   year season lakename iceduration
-# 1 2004 iceoff   Lake D          80
+#   year season lakename stationname iceduration
+# 1 2004 iceoff   Lake D   Station A          80
 ```
 
 #### Check `periodn`
@@ -213,10 +217,12 @@ number of samples at different depths.
 
 ```r
 check_periodn(dat)
-#   year season lakename stationlat stationlong      start        end agg_period periodn
-# 1 2002 iceoff   Lake D   56.09553   -56.39156 2002-08-16 2002-08-16     1 days       3
-# 2 2004  iceon   Lake D   56.09553   -56.39156 2004-01-02 2004-03-25    84 days     350
-
+#   year season lakename stationname stationlat stationlong      start        end
+# 1 2002 iceoff   Lake D   Station A   56.09553   -56.39156 2002-08-16 2002-08-16
+# 2 2004  iceon   Lake D   Station A   56.09553   -56.39156 2004-01-02 2004-03-25
+#   agg_period periodn
+# 1     1 days       3
+# 2    84 days     350
 ```
 
 ### Check for repeated observations
@@ -226,8 +232,9 @@ There should be only one observation at a given station in a given season.
 
 ```r
 check_repeats(dat)
-#   year season lakename stationlat stationlong
-# 4 1975 iceoff   Lake F   48.11363   -138.7702
+#   year season lakename stationname stationlat stationlong
+# 2 1975 iceoff   Lake F        9011   48.11363   -138.7702
+# 4 1975 iceoff   Lake F        9011   48.11363   -138.7702
 ```
 
 ### Check averages and maxima
@@ -239,17 +246,24 @@ any fields where the average is greater than the maximum. Example:
 ```r
 check_avemax(dat, flag = "values")
 # $totphos
-#   year season lakename stationlat stationlong maxtotphos avetotphos
-# 4 1981 iceoff   Lake G   53.51569   -137.4344        2.5         10
+#   year season lakename  stationname stationlat stationlong maxtotphos
+# 4 1981 iceoff   Lake G Hat Rack Bay   53.51569   -137.4344        2.5
+#   avetotphos
+# 4         10
 
 # $zoopmass
-#   year season lakename stationlat stationlong maxzoopmass avezoopmass
-# 1 1980  iceon   Lake G   53.51569   -137.4344         999        1000
-# 5 1982  iceon   Lake G   53.51569   -137.4344         900         999
+#   year season lakename  stationname stationlat stationlong maxzoopmass
+# 1 1980  iceon   Lake G Hat Rack Bay   53.51569   -137.4344         999
+# 5 1982  iceon   Lake G Hat Rack Bay   53.51569   -137.4344         900
+#   avezoopmass
+# 1        1000
+# 5         999
 
 # $lakedepth
-#   year season lakename stationlat stationlong lakemeandepth lakemaxdepth
-# 6 1982 iceoff   Lake G   53.51569   -137.4344           500          250
+#   year season lakename  stationname stationlat stationlong lakemeandepth
+# 8 1983 iceoff   Lake G Hat Rack Bay   53.51569   -137.4344           500
+#   lakemaxdepth
+# 8          250
 ```
 
 If an average is repoted, a maximum should also be reported (and vice versa). In
@@ -260,13 +274,17 @@ reported.
 
 ```r
 check_avemax(dat, flag = "missing")
-# $totphos
-#   year season lakename stationlat stationlong maxtotphos avetotphos
-# 7 1983  iceon   Lake G   53.51569   -137.4344         NA       0.25
+#$totphos
+#   year season lakename  stationname stationlat stationlong maxtotphos
+# 7 1983  iceon   Lake G Hat Rack Bay   53.51569   -137.4344         NA
+#   avetotphos
+# 7       0.25
 
 # $zoopmass
-#   year season lakename stationlat stationlong maxzoopmass avezoopmass
-# 8 1983 iceoff   Lake G   53.51569   -137.4344         900          NA
+#   year season lakename  stationname stationlat stationlong maxzoopmass
+# 8 1983 iceoff   Lake G Hat Rack Bay   53.51569   -137.4344         900
+#   avezoopmass
+# 8          NA
 ```
 
 ### Check sample depth and photic depth
@@ -278,11 +296,63 @@ will have to be decided on a case-by-case basis.
 
 ```r
 check_depths(dat)
-#   year season stationlat stationlong lakename photicdepth sampledepth
-# 3 2001  iceon   48.40392   -125.6284   Lake H          46          50
-# 4 2001 iceoff   48.40392   -125.6284   Lake H          39          40
+#   year season stationname stationlat stationlong lakename photicdepth
+# 3 2001  iceon        5830   48.40392   -125.6284   Lake H          46
+# 4 2001 iceoff        5830   48.40392   -125.6284   Lake H          39
+#   sampledepth
+# 3          50
+# 4          40
 ```
 
+### Check for phytoplankton biomass data
+
+We originally asked for phytoplankton biomass in units of ug dry weight / liter,
+however after talking with researchers we determined that biovolume is a better
+measurement. The `check_phytomass()` function throws a warning if biomass data is
+present for phytoplankton, ciliates, or heterotrophic nanoflagellates so that we
+can follow up with the researcher about converting the units.
+
+```r
+check_phytomass(dat)
+Warning message:
+In check_phytomass(dat) :
+  Phyto/ciliate/HNF biomass present. Follow up with researcher about converting to biovolume
+```
+
+### Check nutrient values
+
+#### DOC
+
+We originally asked for DOC data in units of μg/l, however mg/l was provided by
+most researchers and is a more standard unit. If DOC is in the hundreds or
+thousands, it is likely in μg/l and we should follow up with researchers and
+likely convert their data. `check_doc()` Throws a warning if DOC values are >=
+200.
+
+```r
+check_doc(dat)
+Warning message:
+In check_doc(dat) :
+  DOC data values exceed 200. These data are likely reported in units of ug/l. Check with researchers before converting to mg/l.
+```
+
+#### Nitrogen
+
+Some researchers have reported data in mg/l instead of μg/l. This function
+throws a warning if values are <= 15 and we should follow up in those
+cases. This also returns a data frame of any observations where dissolved
+nitrogen is greater than total nitrogen.
+
+```r
+check_nitro(dat_nitro)
+##   year season      lakename stationname stationlat stationlong avetotnitro
+## 1 2000  iceon Lake Nitrogen          4B      57.34      -137.7         450
+##   maxtotnitro avetotdissnitro maxtotdissnitro
+## 1         500            1000            1001
+Warning message:
+In check_nitro(dat_nitro) :
+  Nitrogen data values exist that are under 15. These data may have been reported in units of mg/l. Check with researchers before converting to ug/l.
+```
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
 if you have suggestions or notice any bugs.

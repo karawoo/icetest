@@ -1,8 +1,8 @@
 #' Calculate proportion sums
 #' 
-#' Sum proportions and, if any do not sum to 1, return a data frame of some 
-#' identifiable columns of the data (year, season, lakename, lat/long) and the
-#' proportion sum.
+#' Sum proportions and, if any do not sum to 1, return a data frame of some
+#' identifiable columns of the data (year, season, lakename, station name,
+#' lat/long) and the proportion sum.
 #' 
 #' @param x Data frame to be checked
 #' @param cols Columns which should sum to one in each row.
@@ -13,11 +13,12 @@ prop_sums <- function(x, cols) {
     sums <- rowSums(y, na.rm = TRUE)
     not_one <- sums[sapply(sums, function(x) {
       !isTRUE(all.equal(x, 1, check.attributes = FALSE, check.names = FALSE, 
-                        tolerance = 0.00001)) 
+                        tolerance = 0.001)) 
     })]
     if (length(not_one) > 0) {
       result <- cbind(x[names(not_one), 
-              c("year", "season", "lakename", "stationlat", "stationlong")], 
+                        c("year", "season", "lakename", "stationname", "stationlat",
+                          "stationlong")], 
             proportion = not_one)
     } else {
       result <- NULL
