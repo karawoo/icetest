@@ -20,7 +20,7 @@ functions is on the to-do list.
 
 ```r
 library('devtools')
-devtools::install_github('icetest', 'karawoo')
+devtools::install_github('karawoo/icetest')
 library('icetest')
 ```
 
