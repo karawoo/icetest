@@ -6,3 +6,4 @@
 ^data-raw$
 README.md
 test_icedata.R
+^CONDUCT\.md$

@@ -356,3 +356,5 @@ In check_nitro(dat_nitro) :
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
 if you have suggestions or notice any bugs.
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
