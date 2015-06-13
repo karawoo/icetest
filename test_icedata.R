@@ -66,4 +66,4 @@ check_phytomass(vdata_nums)
 
 ### Check values in nitrogen and DOC data
 check_nitro(vdata_nums)
-check_doc(vdata_nums)
+icetest::check_doc(vdata_nums) ## (devtools has a check_doc fxn too)
