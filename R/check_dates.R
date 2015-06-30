@@ -57,7 +57,7 @@ check_iceduration_length <- function(dat) {
     mutate(aggperiod = as.Date(paste(endyear, endmonth, endday, sep = "-"), 
                           format = "%Y-%b-%d") -
              as.Date(paste(startyear, startmonth, startday, sep = "-"), 
-                     format = "%Y-%b-%d"), 
+                     format = "%Y-%b-%d") + 1, 
            test = aggperiod <= iceduration) %>%
     filter(test == FALSE)
   if (nrow(test) > 0) {
