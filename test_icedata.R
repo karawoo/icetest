@@ -39,7 +39,7 @@ check_values(vdata_nums)
 
 ### Check dates:
 ### - start date should be before end date
-### - ice duration shouldn't be longer than aggregation period in iceon season
+### - ice duration shouldn't be shorter than aggregation period in iceon season
 ### - ice duration should be NA or 0 in iceoff season (template says NA but 0 also
 ### makes sense)
 ### - periodn should not be smaller than number of days in the aggregation
