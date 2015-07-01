@@ -357,8 +357,9 @@ In check_nitro(dat_nitro) :
 ### Check for negative values
 
 None of the numeric columns in this data (with the exception of station latitude
-and longitude) should be allowed to contain negative values. `check_neg()`
-returns a data frame of any observations that contain negative values.
+and longitude and air temperature) should be allowed to contain negative values.
+`check_neg()` returns a data frame of any observations that contain negative
+values.
 
 ```r
 check_neg(dat)

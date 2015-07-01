@@ -1,8 +1,8 @@
 ##' Check for negative values
 ##'
 ##' Checks that numeric columns are never negative. These columns (with the
-##' exception of stationlat and stationlong, which can be negative) should not
-##' contain values less than zero.
+##' exception of stationlat, stationlong, and airtemp which can be negative)
+##' should not contain values less than zero.
 ##' 
 ##' @param dat Data frame to be tested.
 ##'
@@ -11,8 +11,8 @@
 ##' @export
 
 check_neg <- function(dat) {
-  ## Numeric columns minus stationlat and stationlong, which can be negative
-  noneg <- numfields[!numfields %in% c("stationlat", "stationlong")]
+  ## Numeric columns minus stationlat, stationlong, and airtemp, which can be negative
+  noneg <- numfields[!numfields %in% c("stationlat", "stationlong", "airtemp")]
 
   ## If there are any numeric columns that have negative values, return a data
   ## frame of those observations along with identifying information (year,

@@ -11,8 +11,8 @@ check_neg(dat)
 }
 \description{
 Checks that numeric columns are never negative. These columns (with the
-exception of stationlat and stationlong, which can be negative) should not
-contain values less than zero.
+exception of stationlat, stationlong, and airtemp which can be negative)
+should not contain values less than zero.
 }
 \author{
 Kara Woo
