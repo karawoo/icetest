@@ -344,7 +344,7 @@ cases. This also returns a data frame of any observations where dissolved
 nitrogen is greater than total nitrogen.
 
 ```r
-check_nitro(dat_nitro)
+check_nitro(dat)
 ##   year season      lakename stationname stationlat stationlong avetotnitro
 ## 1 2000  iceon Lake Nitrogen          4B      57.34      -137.7         450
 ##   maxtotnitro avetotdissnitro maxtotdissnitro
@@ -352,6 +352,22 @@ check_nitro(dat_nitro)
 Warning message:
 In check_nitro(dat_nitro) :
   Nitrogen data values exist that are under 15. These data may have been reported in units of mg/l. Check with researchers before converting to ug/l.
+```
+
+### Check for negative values
+
+None of the numeric columns in this data (with the exception of station latitude
+and longitude) should be allowed to contain negative values. `check_neg()`
+returns a data frame of any observations that contain negative values.
+
+```r
+check_neg(dat)
+##   year season lakename stationname stationlat stationlong avetotdissnitro
+## 1 2010  iceon   Lake I          NA   48.40387   -125.6281              NA
+## 3 2012  iceon   Lake I          NA   48.40387   -125.6281          -439.1
+##   propcalanoid cvsuva
+## 1         -0.3    0.0
+## 3           NA   -0.1
 ```
 
 Feel free to [submit an issue](https://github.com/karawoo/icetest/issues)
