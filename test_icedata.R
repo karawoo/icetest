@@ -1,6 +1,6 @@
-###########################################################
-####  Sample script for checking under-ice ecology data  ##
-###########################################################
+#############################################################
+####  Sample script for checking under-ice ecology data  ####
+#############################################################
 
 if (!"icetest" %in% installed.packages()) {
   if (!"devtools" %in% installed.packages()) {
@@ -67,3 +67,6 @@ check_phytomass(vdata_nums)
 ### Check values in nitrogen and DOC data
 check_nitro(vdata_nums)
 icetest::check_doc(vdata_nums) ## (devtools has a check_doc fxn too)
+
+### Check for negative values in numeric columns
+check_neg(vdata_nums)
