@@ -4,18 +4,20 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/vce9mxrisirn94rt?svg=true)](https://ci.appveyor.com/project/karawoo/icetest)
 
 This is an R package to do some QA/QC on data submitted to the
-[under-ice ecology synthesis project](https://www.nceas.ucsb.edu/underice).
+[under-ice ecology synthesis project](https://www.nceas.ucsb.edu/node/1625).
 It will be used to check all data submitted to the project, but you can also
-use it to check your own data before you submit. The package is still under
-development, so beware that the behavior of functions may change.
+use it to check your own data before you submit.
 
-Functions assume that data is structured vertically with `fieldname` as column
-headers, and without the other columns present in the template (`dataclass`,
-etc.). This means the data is organized differently from the layout of the data
-template, but is the easiest way to work with the data for testing. Use the
-`t_icedata()` function to transform data from the template format to vertical.
+It is assumed that your data matches the format of the
+[data template](https://github.com/karawoo/icetest/blob/master/data-raw/IceEcologyDataTemplate_17Nov2014.csv)
+for this project. Use the `t_icedata()` function to transform data from the
+template format to vertical, as the package functions assume that data is
+structured vertically with `fieldname` as column headers, and without the other
+columns present in the template (`dataclass`, etc.). This means the data is
+organized differently from the layout of the data template, but is the easiest
+way to work with the data for testing.
 
-### To install:
+### To install and load the package:
 
 ```r
 library('devtools')
