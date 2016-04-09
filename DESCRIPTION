@@ -1,6 +1,6 @@
 Package: icetest
 Title: Test data for under-ice ecology synthesis
-Version: 0.1
+Version: 1.0
 Authors@R: "Kara Woo <woo.kara@gmail.com> [aut, cre]"
 Description: QA/QC for data submitted to the under-ice ecology synthesis
     project.
